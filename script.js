@@ -32,11 +32,11 @@ function knightMoves(start, target) {
     const targetChildren = getChildren(target);
 
     const checkChildren = (square) => {
+
         const children = getChildren(square);
 
         for (const child of children) {
             if (child[0] === target[0] && child[1] === target[1]) {
-                console.log("yeh baby");
                 route.push(target);
                 return
             }
@@ -48,11 +48,27 @@ function knightMoves(start, target) {
                 }
             }
         }
+
+        let currentDifference = 14;
+        let nextSquare;
+
+        for (const child of children) {
+            const horizontalDifference = Math.abs(child[0] - target[0]);
+            const verticalDifference = Math.abs(child[1] - target[1]);
+            if (horizontalDifference + verticalDifference < currentDifference) {
+                currentDifference = horizontalDifference + verticalDifference;
+                nextSquare = child;
+            }
+        }
+
+        route.push(nextSquare);
+        checkChildren(nextSquare);
     }
 
     checkChildren(start);
-    console.log(route);
-}
 
-// console.log(getChildren([0, 0]));
-knightMoves([0, 0], [3, 3]);
+    return route;
+    }
+
+knightMoves([0, 0],[7, 6]);
+
