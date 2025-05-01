@@ -57,10 +57,9 @@ function knightMoves(start, target) {
     let nextSquare;
 
     for (const child of children) {
-      const horizontalDifference = Math.abs(child[0] - target[0]);
-      const verticalDifference = Math.abs(child[1] - target[1]);
-      if (horizontalDifference + verticalDifference < currentDifference) {
-        currentDifference = horizontalDifference + verticalDifference;
+      const difference = (Math.abs(child[0] - target[0])) + (Math.abs(child[1] - target[1]));
+      if (difference < currentDifference) {
+        currentDifference = difference;
         nextSquare = child;
       }
     }
@@ -74,3 +73,4 @@ function knightMoves(start, target) {
   return route;
 }
 
+console.log(knightMoves([0,0], [7,7]));
