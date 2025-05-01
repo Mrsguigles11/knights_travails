@@ -27,11 +27,15 @@ function getChildren(square) {
 }
 
 function knightMoves(start, target) {
+
+  //initiate route with starting square
   let route = [];
   route.push(start);
   const targetChildren = getChildren(target);
 
   const checkChildren = (square) => {
+
+    //get children of square and check for target or targets child
     const children = getChildren(square);
 
     for (const child of children) {
@@ -48,6 +52,7 @@ function knightMoves(start, target) {
       }
     }
 
+    //if not found find nearest square to target and run function again
     let currentDifference = 14;
     let nextSquare;
 
@@ -68,3 +73,4 @@ function knightMoves(start, target) {
 
   return route;
 }
+
